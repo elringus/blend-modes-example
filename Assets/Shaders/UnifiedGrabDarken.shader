@@ -69,12 +69,9 @@ Shader "Custom/UnifiedGrabDarken"
 			{
 				half4 color = tex2D(_MainTex, vertexOutput.texcoord) * vertexOutput.color;
 				
-				// Находим координаты пикселя на рендер текстуре, 
-				// который находится "под" текущим пикселем объекта
 				float2 grabTexcoord = vertexOutput.screenPos.xy / vertexOutput.screenPos.w; 
 				grabTexcoord.x = (grabTexcoord.x + 1.0) * .5;
 				grabTexcoord.y = (grabTexcoord.y + 1.0) * .5; 
-				// В зависимости от режима
 				#if UNITY_UV_STARTS_AT_TOP
 				grabTexcoord.y = 1.0 - grabTexcoord.y;
 				#endif
